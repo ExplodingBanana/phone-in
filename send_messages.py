@@ -5,9 +5,6 @@ import pika, requests
 connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
 channel = connection.channel()
 
-# Doubling this line cuz no setup.py, later
-channel.queue_declare('phones')
-
 
 def callback(ch, method, properties, body):
     # Telling (mock) API to message ma bitchez

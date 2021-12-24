@@ -4,9 +4,6 @@ import pika
 connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
 channel = connection.channel()
 
-# Doubling this line cuz no setup.py, later
-channel.queue_declare('phones')
-
 
 # Getting da phones (hardocded, duh) from mock API
 import requests
