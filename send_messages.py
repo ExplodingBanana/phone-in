@@ -14,8 +14,11 @@ def callback(ch, method, properties, body):
     r = requests.post('http://demo6884121.mockable.io/send_message', {'phone': str(body)})
 
     # Again, just in case
-    response = r.json()['msg']
-    print(response)
+    try:
+        response = r.json()['msg']
+        print(response)
+    except Exception as e:
+        print('Died from cringe. {}'.format(e))
     
 # To allow Ctrl+C'ving your soul
 def main():
