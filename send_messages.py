@@ -1,5 +1,5 @@
 # Establishing basic RabbitMQ things
-import sys
+from sys import exit
 import pika, requests
 
 connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
@@ -13,11 +13,10 @@ def callback(ch, method, properties, body):
     # Again, just in case
     try:
         response = r.json()['msg']
-        print(f' [*] Recived: {response}')
+        print(f' [*] Recived from API: {response}')
     except Exception as e:
         print('Died from cringe. {}'.format(e))
     
-# To allow Ctrl+C'ving your soul
 def main():
     channel.basic_consume(queue='phones', on_message_callback=callback, auto_ack=True)
 
@@ -27,6 +26,7 @@ def main():
 if __name__ == '__main__':
     try:
         main()
+    # To allow Ctrl+C'ving your soul
     except KeyboardInterrupt:
         print('Interrupted')
-        sys.exit(0)
+        exit(0)
