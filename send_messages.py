@@ -13,7 +13,7 @@ def callback(ch, method, properties, body):
     # Again, just in case
     try:
         response = r.json()['msg']
-        print(response)
+        print(f' [*] Recived: {response}')
     except Exception as e:
         print('Died from cringe. {}'.format(e))
     

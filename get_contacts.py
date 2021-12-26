@@ -13,10 +13,10 @@ r = requests.get('http://demo6884121.mockable.io/get_phones')
 try:
     phones = r.json()['phones']
 except Exception as e:
-    print('Died from cringe. {}'.format(e))
+    print(f'Died from cringe. {e}')
 
 
-# Sending phones one by one because for the love of God I can not figure out the normal way
+# You can't send an array in RabbitMQ
 for phone in phones:
     channel.basic_publish(exchange='', routing_key='phones', body=phone)
 connection.close()
